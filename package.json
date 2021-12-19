@@ -1,0 +1,12 @@
+{
+  "name": "@ony3000/math-plus",
+  "version": "0.1.0",
+  "description": "An object that extends the JavaScript built-in object `Math`.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "https://github.com/ony3000/math-plus.git",
+  "author": "Hyeonjong <nianelo4@gmail.com>",
+  "license": "MIT"
+}
