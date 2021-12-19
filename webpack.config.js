@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'math-plus.js',
@@ -12,6 +12,11 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: 'ts-loader',
+      },
       {
         test: /\.m?js$/,
         exclude: /node_modules/,
@@ -24,6 +29,13 @@ module.exports = {
           },
         },
       },
+    ],
+  },
+  resolve: {
+    extensions: [
+      '.tsx',
+      '.ts',
+      '.js',
     ],
   },
 };
