@@ -1,1 +1,3 @@
-console.log('It works!');
+import MathPlus from './MathPlus';
+
+export default MathPlus;
