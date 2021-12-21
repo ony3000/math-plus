@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
-    "lint": "eslint src/**",
+    "lint": "eslint src/** tests/**",
     "test": "jest"
   },
   "repository": "https://github.com/ony3000/math-plus.git",
