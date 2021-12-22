@@ -14,4 +14,22 @@ describe('The same functionality as the built-in object `Math` should be guarant
       expect(Object.isFrozen(MathPlus)).toBe(Object.isFrozen(Math));
     });
   });
+
+  describe('`MathPlus` must contain the property descriptors of `Math`.', () => {
+    const plusObjectDescriptors = Object.getOwnPropertyDescriptors(MathPlus);
+
+    Object
+      .entries(Object.getOwnPropertyDescriptors(Math))
+      .forEach(([property, descriptor]: [string, PropertyDescriptor]) => {
+        test(`${typeof descriptor.value} ${property}`, () => {
+          const isSameDescriptors = (
+            plusObjectDescriptors[property]?.configurable === descriptor.configurable
+            && plusObjectDescriptors[property]?.enumerable === descriptor.enumerable
+            && plusObjectDescriptors[property]?.writable === descriptor.writable
+          );
+
+          expect(isSameDescriptors).toBe(true);
+        });
+      });
+  });
 });
