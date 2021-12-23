@@ -1,3 +1,4 @@
+import { MathConstant } from '../src/types';
 import MathPlus from '../src';
 
 describe('The same functionality as the built-in object `Math` should be guaranteed.', () => {
@@ -31,5 +32,24 @@ describe('The same functionality as the built-in object `Math` should be guarant
           expect(isSameDescriptors).toBe(true);
         });
       });
+  });
+
+  describe('`MathPlus` must contain the constants of `Math`.', () => {
+    const constantProperties: MathConstant[] = [
+      'E',
+      'LN10',
+      'LN2',
+      'LOG10E',
+      'LOG2E',
+      'PI',
+      'SQRT1_2',
+      'SQRT2',
+    ];
+
+    constantProperties.forEach((property) => {
+      test(`number ${property}`, () => {
+        expect(MathPlus[property]).toBe(Math[property]);
+      });
+    });
   });
 });
