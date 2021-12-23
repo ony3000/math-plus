@@ -1,3 +1,42 @@
-const MathPlus = {};
+import { MathConstant } from './types';
+
+interface MathPlusShape extends Math {
+}
+
+const MathPlus: MathPlusShape = {
+  E: Math.E,
+  LN10: Math.LN10,
+  LN2: Math.LN2,
+  LOG10E: Math.LOG10E,
+  LOG2E: Math.LOG2E,
+  PI: Math.PI,
+  SQRT1_2: Math.SQRT1_2,
+  SQRT2: Math.SQRT2,
+};
+
+const constantProperties: MathConstant[] = [
+  'E',
+  'LN10',
+  'LN2',
+  'LOG10E',
+  'LOG2E',
+  'PI',
+  'SQRT1_2',
+  'SQRT2',
+];
+
+const constantDescriptor: PropertyDescriptor = {
+  configurable: false,
+  enumerable: false,
+  writable: false,
+};
+
+constantProperties.forEach((property) => {
+  Object.defineProperty(MathPlus, property, constantDescriptor);
+});
+
+export {
+  MathPlusShape,
+};
 
 export default MathPlus;
