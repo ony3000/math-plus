@@ -1,4 +1,4 @@
-import { MathConstant } from './types';
+import { MathConstantName } from './types';
 
 interface MathPlusShape extends Math {
 }
@@ -14,7 +14,7 @@ const MathPlus: MathPlusShape = {
   SQRT2: Math.SQRT2,
 };
 
-const constantProperties: MathConstant[] = [
+const constantProperties: MathConstantName[] = [
   'E',
   'LN10',
   'LN2',

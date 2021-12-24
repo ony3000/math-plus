@@ -1,4 +1,4 @@
-import { MathConstant } from '../src/types';
+import { MathConstantName } from '../src/types';
 import MathPlus from '../src';
 
 describe('The same functionality as the built-in object `Math` should be guaranteed.', () => {
@@ -35,7 +35,7 @@ describe('The same functionality as the built-in object `Math` should be guarant
   });
 
   describe('`MathPlus` must contain the constants of `Math`.', () => {
-    const constantProperties: MathConstant[] = [
+    const constantProperties: MathConstantName[] = [
       'E',
       'LN10',
       'LN2',

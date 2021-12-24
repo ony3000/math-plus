@@ -1,4 +1,4 @@
-type MathConstant =
+type MathConstantName =
   'E'
   | 'LN10'
   | 'LN2'
@@ -10,5 +10,5 @@ type MathConstant =
   ;
 
 export {
-  MathConstant,
+  MathConstantName,
 };
