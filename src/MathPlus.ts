@@ -1,4 +1,4 @@
-import { MathConstantName } from './types';
+import { MathConstantName, MathMethodName } from './types';
 
 export interface MathPlusShape extends Math {
 }
@@ -34,5 +34,43 @@ const constantDescriptor: PropertyDescriptor = {
 constantProperties.forEach((property) => {
   Object.defineProperty(MathPlus, property, constantDescriptor);
 });
+
+export const methodProperties: MathMethodName[] = [
+  'abs',
+  'acos',
+  'acosh',
+  'asin',
+  'asinh',
+  'atan',
+  'atanh',
+  'atan2',
+  'ceil',
+  'cbrt',
+  'expm1',
+  'clz32',
+  'cos',
+  'cosh',
+  'exp',
+  'floor',
+  'fround',
+  'hypot',
+  'imul',
+  'log',
+  'log1p',
+  'log2',
+  'log10',
+  'max',
+  'min',
+  'pow',
+  'random',
+  'round',
+  'sign',
+  'sin',
+  'sinh',
+  'sqrt',
+  'tan',
+  'tanh',
+  'trunc',
+];
 
 export default MathPlus;

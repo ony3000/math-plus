@@ -1,4 +1,11 @@
-import MathPlus, { constantProperties } from '../src';
+import MathPlus, { constantProperties, methodProperties } from '../src';
+
+const testIf = (
+  condition: boolean,
+  name: string,
+  fn?: jest.ProvidesCallback | undefined,
+  timeout?: number | undefined,
+) => (condition ? test(name, fn, timeout) : test.skip(name, fn, timeout));
 
 describe('The same functionality as the built-in object `Math` should be guaranteed.', () => {
   describe('Both objects must have the same characteristics.', () => {
@@ -37,6 +44,26 @@ describe('The same functionality as the built-in object `Math` should be guarant
     constantProperties.forEach((property) => {
       test(`number ${property}`, () => {
         expect(MathPlus[property]).toBe(Math[property]);
+      });
+    });
+  });
+
+  describe('`MathPlus` must contain the methods of `Math`.', () => {
+    methodProperties.forEach((property) => {
+      describe(`function ${property}`, () => {
+        const isDefinedAsFunction = typeof MathPlus[property] === 'function';
+
+        test('is defined as a function', () => {
+          expect(isDefinedAsFunction).toBe(true);
+        });
+
+        testIf(isDefinedAsFunction, 'has no prototype', () => {
+          expect(MathPlus[property].prototype).toBe(Math[property].prototype);
+        });
+
+        testIf(isDefinedAsFunction, 'has same number of expected parameters', () => {
+          expect(MathPlus[property].length).toBe(Math[property].length);
+        });
       });
     });
   });
