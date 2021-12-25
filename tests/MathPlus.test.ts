@@ -1,5 +1,11 @@
 import MathPlus, { constantProperties, methodProperties } from '../src';
 
+const describeIf = (
+  condition: boolean,
+  name: string | number | Function | jest.FunctionLike,
+  fn: jest.EmptyFunction,
+) => (condition ? describe(name, fn) : describe.skip(name, fn));
+
 const testIf = (
   condition: boolean,
   name: string,
@@ -22,28 +28,37 @@ describe('The same functionality as the built-in object `Math` should be guarant
     });
   });
 
-  describe('`MathPlus` must contain the property descriptors of `Math`.', () => {
-    const plusObjectDescriptors = Object.getOwnPropertyDescriptors(MathPlus);
-
-    Object
-      .entries(Object.getOwnPropertyDescriptors(Math))
-      .forEach(([property, descriptor]: [string, PropertyDescriptor]) => {
-        test(`${typeof descriptor.value} ${property}`, () => {
-          const isSameDescriptors = (
-            plusObjectDescriptors[property]?.configurable === descriptor.configurable
-            && plusObjectDescriptors[property]?.enumerable === descriptor.enumerable
-            && plusObjectDescriptors[property]?.writable === descriptor.writable
-          );
-
-          expect(isSameDescriptors).toBe(true);
-        });
-      });
-  });
-
   describe('`MathPlus` must contain the constants of `Math`.', () => {
     constantProperties.forEach((property) => {
-      test(`number ${property}`, () => {
-        expect(MathPlus[property]).toBe(Math[property]);
+      describe(`number ${property}`, () => {
+        const isDefinedAsNumber = typeof MathPlus[property] === 'number';
+
+        test('is defined as a number', () => {
+          expect(isDefinedAsNumber).toBe(true);
+        });
+
+        describeIf(isDefinedAsNumber, 'has same property descriptors', () => {
+          const plusPropertyDescriptor = Object.getOwnPropertyDescriptor(MathPlus, property);
+          const originPropertyDescriptor = Object.getOwnPropertyDescriptor(Math, property);
+
+          if (plusPropertyDescriptor !== undefined && originPropertyDescriptor !== undefined) {
+            test('configurable', () => {
+              expect(plusPropertyDescriptor.configurable).toBe(originPropertyDescriptor.configurable);
+            });
+
+            test('enumerable', () => {
+              expect(plusPropertyDescriptor.enumerable).toBe(originPropertyDescriptor.enumerable);
+            });
+
+            test('writable', () => {
+              expect(plusPropertyDescriptor.writable).toBe(originPropertyDescriptor.writable);
+            });
+          }
+        });
+
+        testIf(isDefinedAsNumber, 'has same value', () => {
+          expect(MathPlus[property]).toBe(Math[property]);
+        });
       });
     });
   });
@@ -55,6 +70,25 @@ describe('The same functionality as the built-in object `Math` should be guarant
 
         test('is defined as a function', () => {
           expect(isDefinedAsFunction).toBe(true);
+        });
+
+        describeIf(isDefinedAsFunction, 'has same property descriptors', () => {
+          const plusPropertyDescriptor = Object.getOwnPropertyDescriptor(MathPlus, property);
+          const originPropertyDescriptor = Object.getOwnPropertyDescriptor(Math, property);
+
+          if (plusPropertyDescriptor !== undefined && originPropertyDescriptor !== undefined) {
+            test('configurable', () => {
+              expect(plusPropertyDescriptor.configurable).toBe(originPropertyDescriptor.configurable);
+            });
+
+            test('enumerable', () => {
+              expect(plusPropertyDescriptor.enumerable).toBe(originPropertyDescriptor.enumerable);
+            });
+
+            test('writable', () => {
+              expect(plusPropertyDescriptor.writable).toBe(originPropertyDescriptor.writable);
+            });
+          }
         });
 
         testIf(isDefinedAsFunction, 'has no prototype', () => {
