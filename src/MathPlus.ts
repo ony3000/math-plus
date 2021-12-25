@@ -14,7 +14,7 @@ const MathPlus: MathPlusShape = {
   SQRT2: Math.SQRT2,
 };
 
-export const constantProperties: MathConstantName[] = [
+export const constantProps: MathConstantName[] = [
   'E',
   'LN10',
   'LN2',
@@ -31,11 +31,11 @@ const constantDescriptor: PropertyDescriptor = {
   writable: false,
 };
 
-constantProperties.forEach((property) => {
-  Object.defineProperty(MathPlus, property, constantDescriptor);
+constantProps.forEach((prop) => {
+  Object.defineProperty(MathPlus, prop, constantDescriptor);
 });
 
-export const methodProperties: MathMethodName[] = [
+export const methodProps: MathMethodName[] = [
   'abs',
   'acos',
   'acosh',

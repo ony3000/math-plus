@@ -1,4 +1,4 @@
-import MathPlus, { constantProperties, methodProperties } from '../src';
+import MathPlus, { constantProps, methodProps } from '../src';
 
 const describeIf = (
   condition: boolean,
@@ -29,74 +29,74 @@ describe('The same functionality as the built-in object `Math` should be guarant
   });
 
   describe('`MathPlus` must contain the constants of `Math`.', () => {
-    constantProperties.forEach((property) => {
-      describe(`number ${property}`, () => {
-        const isDefinedAsNumber = typeof MathPlus[property] === 'number';
+    constantProps.forEach((prop) => {
+      describe(`number ${prop}`, () => {
+        const isDefinedAsNumber = typeof MathPlus[prop] === 'number';
 
         test('is defined as a number', () => {
           expect(isDefinedAsNumber).toBe(true);
         });
 
         describeIf(isDefinedAsNumber, 'has same property descriptors', () => {
-          const plusPropertyDescriptor = Object.getOwnPropertyDescriptor(MathPlus, property);
-          const originPropertyDescriptor = Object.getOwnPropertyDescriptor(Math, property);
+          const plusPropDescriptor = Object.getOwnPropertyDescriptor(MathPlus, prop);
+          const originPropDescriptor = Object.getOwnPropertyDescriptor(Math, prop);
 
-          if (plusPropertyDescriptor !== undefined && originPropertyDescriptor !== undefined) {
+          if (plusPropDescriptor !== undefined && originPropDescriptor !== undefined) {
             test('configurable', () => {
-              expect(plusPropertyDescriptor.configurable).toBe(originPropertyDescriptor.configurable);
+              expect(plusPropDescriptor.configurable).toBe(originPropDescriptor.configurable);
             });
 
             test('enumerable', () => {
-              expect(plusPropertyDescriptor.enumerable).toBe(originPropertyDescriptor.enumerable);
+              expect(plusPropDescriptor.enumerable).toBe(originPropDescriptor.enumerable);
             });
 
             test('writable', () => {
-              expect(plusPropertyDescriptor.writable).toBe(originPropertyDescriptor.writable);
+              expect(plusPropDescriptor.writable).toBe(originPropDescriptor.writable);
             });
           }
         });
 
         testIf(isDefinedAsNumber, 'has same value', () => {
-          expect(MathPlus[property]).toBe(Math[property]);
+          expect(MathPlus[prop]).toBe(Math[prop]);
         });
       });
     });
   });
 
   describe('`MathPlus` must contain the methods of `Math`.', () => {
-    methodProperties.forEach((property) => {
-      describe(`function ${property}`, () => {
-        const isDefinedAsFunction = typeof MathPlus[property] === 'function';
+    methodProps.forEach((prop) => {
+      describe(`function ${prop}`, () => {
+        const isDefinedAsFunction = typeof MathPlus[prop] === 'function';
 
         test('is defined as a function', () => {
           expect(isDefinedAsFunction).toBe(true);
         });
 
         describeIf(isDefinedAsFunction, 'has same property descriptors', () => {
-          const plusPropertyDescriptor = Object.getOwnPropertyDescriptor(MathPlus, property);
-          const originPropertyDescriptor = Object.getOwnPropertyDescriptor(Math, property);
+          const plusPropDescriptor = Object.getOwnPropertyDescriptor(MathPlus, prop);
+          const originPropDescriptor = Object.getOwnPropertyDescriptor(Math, prop);
 
-          if (plusPropertyDescriptor !== undefined && originPropertyDescriptor !== undefined) {
+          if (plusPropDescriptor !== undefined && originPropDescriptor !== undefined) {
             test('configurable', () => {
-              expect(plusPropertyDescriptor.configurable).toBe(originPropertyDescriptor.configurable);
+              expect(plusPropDescriptor.configurable).toBe(originPropDescriptor.configurable);
             });
 
             test('enumerable', () => {
-              expect(plusPropertyDescriptor.enumerable).toBe(originPropertyDescriptor.enumerable);
+              expect(plusPropDescriptor.enumerable).toBe(originPropDescriptor.enumerable);
             });
 
             test('writable', () => {
-              expect(plusPropertyDescriptor.writable).toBe(originPropertyDescriptor.writable);
+              expect(plusPropDescriptor.writable).toBe(originPropDescriptor.writable);
             });
           }
         });
 
         testIf(isDefinedAsFunction, 'has no prototype', () => {
-          expect(MathPlus[property].prototype).toBe(Math[property].prototype);
+          expect(MathPlus[prop].prototype).toBe(Math[prop].prototype);
         });
 
         testIf(isDefinedAsFunction, 'has same number of expected parameters', () => {
-          expect(MathPlus[property].length).toBe(Math[property].length);
+          expect(MathPlus[prop].length).toBe(Math[prop].length);
         });
       });
     });
