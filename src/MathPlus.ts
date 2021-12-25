@@ -1,6 +1,6 @@
 import { MathConstantName } from './types';
 
-interface MathPlusShape extends Math {
+export interface MathPlusShape extends Math {
 }
 
 const MathPlus: MathPlusShape = {
@@ -14,7 +14,7 @@ const MathPlus: MathPlusShape = {
   SQRT2: Math.SQRT2,
 };
 
-const constantProperties: MathConstantName[] = [
+export const constantProperties: MathConstantName[] = [
   'E',
   'LN10',
   'LN2',
@@ -34,9 +34,5 @@ const constantDescriptor: PropertyDescriptor = {
 constantProperties.forEach((property) => {
   Object.defineProperty(MathPlus, property, constantDescriptor);
 });
-
-export {
-  MathPlusShape,
-};
 
 export default MathPlus;
