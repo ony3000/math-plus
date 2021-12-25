@@ -91,7 +91,7 @@ describe('The same functionality as the built-in object `Math` should be guarant
           }
         });
 
-        testIf(isDefinedAsFunction, 'has no prototype', () => {
+        testIf(isDefinedAsFunction, 'has same prototype (as undefined)', () => {
           expect(MathPlus[prop].prototype).toBe(Math[prop].prototype);
         });
 
