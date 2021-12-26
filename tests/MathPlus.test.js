@@ -1,16 +1,16 @@
 import MathPlus, { constantProps, methodProps } from '../src';
 
 const describeIf = (
-  condition: boolean,
-  name: string | number | Function | jest.FunctionLike,
-  fn: jest.EmptyFunction,
+  condition,
+  name,
+  fn,
 ) => (condition ? describe(name, fn) : describe.skip(name, fn));
 
 const testIf = (
-  condition: boolean,
-  name: string,
-  fn?: jest.ProvidesCallback | undefined,
-  timeout?: number | undefined,
+  condition,
+  name,
+  fn,
+  timeout,
 ) => (condition ? test(name, fn, timeout) : test.skip(name, fn, timeout));
 
 describe('The same functionality as the built-in object `Math` should be guaranteed.', () => {
