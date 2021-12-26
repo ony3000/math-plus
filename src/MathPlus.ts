@@ -1,5 +1,3 @@
-import { MathConstantName, MathMethodName } from './types';
-
 export interface MathPlusShape extends Math {
 }
 
@@ -14,16 +12,11 @@ const MathPlus: MathPlusShape = {
   SQRT2: Math.SQRT2,
 };
 
-export const constantProps: MathConstantName[] = [
-  'E',
-  'LN10',
-  'LN2',
-  'LOG10E',
-  'LOG2E',
-  'PI',
-  'SQRT1_2',
-  'SQRT2',
-];
+export const constantProps = Object.getOwnPropertyNames(Math).filter((prop) => {
+  const descriptor = Object.getOwnPropertyDescriptor(Math, prop);
+
+  return (descriptor !== undefined && typeof descriptor.value === 'number');
+});
 
 const constantDescriptor: PropertyDescriptor = {
   configurable: false,
@@ -35,42 +28,10 @@ constantProps.forEach((prop) => {
   Object.defineProperty(MathPlus, prop, constantDescriptor);
 });
 
-export const methodProps: MathMethodName[] = [
-  'abs',
-  'acos',
-  'acosh',
-  'asin',
-  'asinh',
-  'atan',
-  'atanh',
-  'atan2',
-  'ceil',
-  'cbrt',
-  'expm1',
-  'clz32',
-  'cos',
-  'cosh',
-  'exp',
-  'floor',
-  'fround',
-  'hypot',
-  'imul',
-  'log',
-  'log1p',
-  'log2',
-  'log10',
-  'max',
-  'min',
-  'pow',
-  'random',
-  'round',
-  'sign',
-  'sin',
-  'sinh',
-  'sqrt',
-  'tan',
-  'tanh',
-  'trunc',
-];
+export const methodProps = Object.getOwnPropertyNames(Math).filter((prop) => {
+  const descriptor = Object.getOwnPropertyDescriptor(Math, prop);
+
+  return (descriptor !== undefined && typeof descriptor.value === 'function');
+});
 
 export default MathPlus;
