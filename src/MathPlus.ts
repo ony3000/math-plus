@@ -10,6 +10,9 @@ const MathPlus: MathPlusShape = {
   PI: Math.PI,
   SQRT1_2: Math.SQRT1_2,
   SQRT2: Math.SQRT2,
+  abs(x: number): number {
+    return Math.abs(x);
+  },
 };
 
 export const constantProps = Object.getOwnPropertyNames(Math).filter((prop) => {
@@ -32,6 +35,14 @@ export const methodProps = Object.getOwnPropertyNames(Math).filter((prop) => {
   const descriptor = Object.getOwnPropertyDescriptor(Math, prop);
 
   return (descriptor !== undefined && typeof descriptor.value === 'function');
+});
+
+const methodDescriptor: PropertyDescriptor = {
+  enumerable: false,
+};
+
+methodProps.forEach((prop) => {
+  Object.defineProperty(MathPlus, prop, methodDescriptor);
 });
 
 export default MathPlus;
