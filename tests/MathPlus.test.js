@@ -40,20 +40,21 @@ describe('The same functionality as the built-in object `Math` should be guarant
         describeIf(isDefinedAsNumber, 'has same property descriptors', () => {
           const plusPropDescriptor = Object.getOwnPropertyDescriptor(MathPlus, prop);
           const originPropDescriptor = Object.getOwnPropertyDescriptor(Math, prop);
+          const areDescriptorsValid = (
+            plusPropDescriptor !== undefined && originPropDescriptor !== undefined
+          );
 
-          if (plusPropDescriptor !== undefined && originPropDescriptor !== undefined) {
-            test('configurable', () => {
-              expect(plusPropDescriptor.configurable).toBe(originPropDescriptor.configurable);
-            });
+          testIf(areDescriptorsValid, 'configurable', () => {
+            expect(plusPropDescriptor.configurable).toBe(originPropDescriptor.configurable);
+          });
 
-            test('enumerable', () => {
-              expect(plusPropDescriptor.enumerable).toBe(originPropDescriptor.enumerable);
-            });
+          testIf(areDescriptorsValid, 'enumerable', () => {
+            expect(plusPropDescriptor.enumerable).toBe(originPropDescriptor.enumerable);
+          });
 
-            test('writable', () => {
-              expect(plusPropDescriptor.writable).toBe(originPropDescriptor.writable);
-            });
-          }
+          testIf(areDescriptorsValid, 'writable', () => {
+            expect(plusPropDescriptor.writable).toBe(originPropDescriptor.writable);
+          });
         });
 
         testIf(isDefinedAsNumber, 'has same value', () => {
@@ -75,20 +76,21 @@ describe('The same functionality as the built-in object `Math` should be guarant
         describeIf(isDefinedAsFunction, 'has same property descriptors', () => {
           const plusPropDescriptor = Object.getOwnPropertyDescriptor(MathPlus, prop);
           const originPropDescriptor = Object.getOwnPropertyDescriptor(Math, prop);
+          const areDescriptorsValid = (
+            plusPropDescriptor !== undefined && originPropDescriptor !== undefined
+          );
 
-          if (plusPropDescriptor !== undefined && originPropDescriptor !== undefined) {
-            test('configurable', () => {
-              expect(plusPropDescriptor.configurable).toBe(originPropDescriptor.configurable);
-            });
+          testIf(areDescriptorsValid, 'configurable', () => {
+            expect(plusPropDescriptor.configurable).toBe(originPropDescriptor.configurable);
+          });
 
-            test('enumerable', () => {
-              expect(plusPropDescriptor.enumerable).toBe(originPropDescriptor.enumerable);
-            });
+          testIf(areDescriptorsValid, 'enumerable', () => {
+            expect(plusPropDescriptor.enumerable).toBe(originPropDescriptor.enumerable);
+          });
 
-            test('writable', () => {
-              expect(plusPropDescriptor.writable).toBe(originPropDescriptor.writable);
-            });
-          }
+          testIf(areDescriptorsValid, 'writable', () => {
+            expect(plusPropDescriptor.writable).toBe(originPropDescriptor.writable);
+          });
         });
 
         testIf(isDefinedAsFunction, 'has same prototype (as undefined)', () => {
