@@ -190,5 +190,39 @@ describe('The same functionality as the built-in object `Math` should be guarant
         });
       });
     });
+
+    describe('function acos; returns the arccosine (in radians) of a number', () => {
+      const isDefinedAsFunction = typeof MathPlus.acos === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number between -1 and 1 returns the arccosine of the given number', () => {
+        expect(MathPlus.acos(-1)).toBe(Math.PI);
+        expect(MathPlus.acos(0)).toBe(Math.PI / 2);
+        expect(MathPlus.acos(1)).toBe(0);
+      });
+
+      testIf(isDefinedAsFunction, 'passing a number less than -1 or greater than 1 returns NaN', () => {
+        expect(MathPlus.acos(-2)).toBe(NaN);
+        expect(MathPlus.acos(2)).toBe(NaN);
+      });
+
+      testIf(isDefinedAsFunction, 'passing null, an empty string or an empty array returns the arccosine of 0', () => {
+        expect(MathPlus.acos(null)).toBe(Math.PI / 2);
+        expect(MathPlus.acos('')).toBe(Math.PI / 2);
+        expect(MathPlus.acos([])).toBe(Math.PI / 2);
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value (except the three above) returns NaN', () => {
+        expect(MathPlus.acos({})).toBe(NaN);
+        expect(MathPlus.acos([1, 2])).toBe(NaN);
+        expect(MathPlus.acos('string')).toBe(NaN);
+        expect(MathPlus.acos()).toBe(NaN);
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+        expect(() => MathPlus.acos(-1n)).toThrow();
+        expect(() => MathPlus.acos(0n)).toThrow();
+        expect(() => MathPlus.acos(1n)).toThrow();
+      });
+    });
   });
 });
