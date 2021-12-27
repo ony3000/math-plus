@@ -105,10 +105,10 @@ describe('The same functionality as the built-in object `Math` should be guarant
   });
 
   describe('The methods must have the same functionality.', () => {
-    describe('function abs', () => {
+    describe('function abs; returns the absolute value of a number', () => {
       const isDefinedAsFunction = typeof MathPlus.abs === 'function';
 
-      testIf(isDefinedAsFunction, 'returns the absolute value of a number', () => {
+      testIf(isDefinedAsFunction, 'passing a number returns the absolute value', () => {
         expect(MathPlus.abs(-2)).toBe(2);
       });
 
