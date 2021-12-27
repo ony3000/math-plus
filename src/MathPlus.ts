@@ -13,6 +13,9 @@ const MathPlus: MathPlusShape = {
   abs(x: number): number {
     return Math.abs(x);
   },
+  acos(x: number): number {
+    return Math.acos(x);
+  },
 };
 
 export const constantProps = Object.getOwnPropertyNames(Math).filter((prop) => {
