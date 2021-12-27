@@ -14,18 +14,10 @@ const testIf = (
 ) => (condition ? test(name, fn, timeout) : test.skip(name, fn, timeout));
 
 describe('The same functionality as the built-in object `Math` should be guaranteed.', () => {
-  describe('Both objects must have the same characteristics.', () => {
-    test('isExtensible', () => {
-      expect(Object.isExtensible(MathPlus)).toBe(Object.isExtensible(Math));
-    });
-
-    test('isSealed', () => {
-      expect(Object.isSealed(MathPlus)).toBe(Object.isSealed(Math));
-    });
-
-    test('isFrozen', () => {
-      expect(Object.isFrozen(MathPlus)).toBe(Object.isFrozen(Math));
-    });
+  test('Both objects must have the same characteristics.', () => {
+    expect(Object.isExtensible(MathPlus)).toBe(Object.isExtensible(Math));
+    expect(Object.isSealed(MathPlus)).toBe(Object.isSealed(Math));
+    expect(Object.isFrozen(MathPlus)).toBe(Object.isFrozen(Math));
   });
 
   describe('`MathPlus` must contain the constants of `Math`.', () => {
@@ -37,24 +29,13 @@ describe('The same functionality as the built-in object `Math` should be guarant
           expect(isDefinedAsNumber).toBe(true);
         });
 
-        describeIf(isDefinedAsNumber, 'has same property descriptors', () => {
+        testIf(isDefinedAsNumber, 'has same property descriptors', () => {
           const plusPropDescriptor = Object.getOwnPropertyDescriptor(MathPlus, prop);
           const originPropDescriptor = Object.getOwnPropertyDescriptor(Math, prop);
-          const areDescriptorsValid = (
-            plusPropDescriptor !== undefined && originPropDescriptor !== undefined
-          );
 
-          testIf(areDescriptorsValid, 'configurable', () => {
-            expect(plusPropDescriptor.configurable).toBe(originPropDescriptor.configurable);
-          });
-
-          testIf(areDescriptorsValid, 'enumerable', () => {
-            expect(plusPropDescriptor.enumerable).toBe(originPropDescriptor.enumerable);
-          });
-
-          testIf(areDescriptorsValid, 'writable', () => {
-            expect(plusPropDescriptor.writable).toBe(originPropDescriptor.writable);
-          });
+          expect(plusPropDescriptor.configurable).toBe(originPropDescriptor.configurable);
+          expect(plusPropDescriptor.enumerable).toBe(originPropDescriptor.enumerable);
+          expect(plusPropDescriptor.writable).toBe(originPropDescriptor.writable);
         });
 
         testIf(isDefinedAsNumber, 'has same value', () => {
@@ -73,24 +54,13 @@ describe('The same functionality as the built-in object `Math` should be guarant
           expect(isDefinedAsFunction).toBe(true);
         });
 
-        describeIf(isDefinedAsFunction, 'has same property descriptors', () => {
+        testIf(isDefinedAsFunction, 'has same property descriptors', () => {
           const plusPropDescriptor = Object.getOwnPropertyDescriptor(MathPlus, prop);
           const originPropDescriptor = Object.getOwnPropertyDescriptor(Math, prop);
-          const areDescriptorsValid = (
-            plusPropDescriptor !== undefined && originPropDescriptor !== undefined
-          );
 
-          testIf(areDescriptorsValid, 'configurable', () => {
-            expect(plusPropDescriptor.configurable).toBe(originPropDescriptor.configurable);
-          });
-
-          testIf(areDescriptorsValid, 'enumerable', () => {
-            expect(plusPropDescriptor.enumerable).toBe(originPropDescriptor.enumerable);
-          });
-
-          testIf(areDescriptorsValid, 'writable', () => {
-            expect(plusPropDescriptor.writable).toBe(originPropDescriptor.writable);
-          });
+          expect(plusPropDescriptor.configurable).toBe(originPropDescriptor.configurable);
+          expect(plusPropDescriptor.enumerable).toBe(originPropDescriptor.enumerable);
+          expect(plusPropDescriptor.writable).toBe(originPropDescriptor.writable);
         });
 
         testIf(isDefinedAsFunction, 'has same prototype (as undefined)', () => {
@@ -108,85 +78,55 @@ describe('The same functionality as the built-in object `Math` should be guarant
     describe('function abs; returns the absolute value of a number', () => {
       const isDefinedAsFunction = typeof MathPlus.abs === 'function';
 
-      testIf(isDefinedAsFunction, 'passing a number returns the absolute value', () => {
+      testIf(isDefinedAsFunction, 'passing a numeric value returns the absolute value', () => {
+        expect(MathPlus.abs('-1')).toBe(1);
         expect(MathPlus.abs(-2)).toBe(2);
       });
 
-      testIf(isDefinedAsFunction, 'passing a numeric string returns the same result as if it were treated as a number', () => {
-        expect(MathPlus.abs('-1')).toBe(1);
-      });
-
-      testIf(isDefinedAsFunction, 'passing an empty object returns NaN', () => {
+      testIf(isDefinedAsFunction, 'passing an empty object, an array with more than one member, a non-numeric string, undefined or empty parameter returns NaN', () => {
         expect(MathPlus.abs({})).toBe(NaN);
-      });
-
-      testIf(isDefinedAsFunction, 'passing an array with more than one member returns NaN', () => {
         expect(MathPlus.abs([1, 2])).toBe(NaN);
-      });
-
-      testIf(isDefinedAsFunction, 'passing a non-numeric string returns NaN', () => {
         expect(MathPlus.abs('string')).toBe(NaN);
-      });
-
-      testIf(isDefinedAsFunction, 'passing undefined or empty parameter returns NaN', () => {
+        expect(MathPlus.abs(undefined)).toBe(NaN);
         expect(MathPlus.abs()).toBe(NaN);
       });
 
-      testIf(isDefinedAsFunction, 'passing null returns 0', () => {
+      testIf(isDefinedAsFunction, 'passing null, an empty string or an empty array returns 0', () => {
         expect(MathPlus.abs(null)).toBe(0);
-      });
-
-      testIf(isDefinedAsFunction, 'passing an empty string returns 0', () => {
         expect(MathPlus.abs('')).toBe(0);
-      });
-
-      testIf(isDefinedAsFunction, 'passing an empty array returns 0', () => {
         expect(MathPlus.abs([])).toBe(0);
       });
 
       testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+        expect(() => MathPlus.abs(-2n)).toThrow();
         expect(() => MathPlus.abs(1n)).toThrow();
       });
 
       describeIf(isDefinedAsFunction, 'passing an array with only one member is almost the same as passing that member as is, but...', () => {
-        testIf(isDefinedAsFunction, 'a number returns the absolute value', () => {
+        testIf(isDefinedAsFunction, 'a numeric value returns the absolute value', () => {
+          expect(MathPlus.abs(['-1'])).toBe(1);
           expect(MathPlus.abs([-2])).toBe(2);
         });
 
-        testIf(isDefinedAsFunction, 'a numeric string returns the same result as if it were treated as a number', () => {
-          expect(MathPlus.abs(['-1'])).toBe(1);
-        });
-
-        testIf(isDefinedAsFunction, 'an empty object returns NaN', () => {
+        testIf(isDefinedAsFunction, 'an empty object, an array with more than one member or a non-numeric string returns NaN', () => {
           expect(MathPlus.abs([{}])).toBe(NaN);
-        });
-
-        testIf(isDefinedAsFunction, 'an array with more than one member returns NaN', () => {
           expect(MathPlus.abs([[1, 2]])).toBe(NaN);
-        });
-
-        testIf(isDefinedAsFunction, 'a non-numeric string returns NaN', () => {
           expect(MathPlus.abs(['string'])).toBe(NaN);
         });
 
-        testIf(isDefinedAsFunction, '[!] undefined returns 0', () => {
+        testIf(isDefinedAsFunction, '[!] undefined not return NaN, and returns 0', () => {
           expect(MathPlus.abs([undefined])).toBe(0);
         });
 
-        testIf(isDefinedAsFunction, 'null returns 0', () => {
+        testIf(isDefinedAsFunction, 'null, an empty string or an empty array returns 0', () => {
           expect(MathPlus.abs([null])).toBe(0);
-        });
-
-        testIf(isDefinedAsFunction, 'an empty string returns 0', () => {
           expect(MathPlus.abs([''])).toBe(0);
-        });
-
-        testIf(isDefinedAsFunction, 'an empty array returns 0', () => {
           expect(MathPlus.abs([[]])).toBe(0);
         });
 
-        testIf(isDefinedAsFunction, '[!] a bigint not throw error, and returns the same result as if it were treated as a number', () => {
-          expect(MathPlus.abs([-1n])).toBe(1);
+        testIf(isDefinedAsFunction, '[!] a bigint not throw error, and returns the absolute value', () => {
+          expect(MathPlus.abs([-2n])).toBe(2);
+          expect(MathPlus.abs([1n])).toBe(1);
         });
       });
     });
