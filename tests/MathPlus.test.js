@@ -131,10 +131,10 @@ describe('The same functionality as the built-in object `Math` should be guarant
       });
     });
 
-    describe('function acos; returns the arccosine (in radians) of a number', () => {
+    describe('function acos; returns the arc-cosine (in radians) of a number', () => {
       const isDefinedAsFunction = typeof MathPlus.acos === 'function';
 
-      testIf(isDefinedAsFunction, 'passing a number between -1 and 1 returns the arccosine of the given number', () => {
+      testIf(isDefinedAsFunction, 'passing a number between -1 and 1 returns the arc-cosine of the given number', () => {
         expect(MathPlus.acos(-1)).toBe(Math.PI);
         expect(MathPlus.acos(0)).toBe(Math.PI / 2);
         expect(MathPlus.acos(1)).toBe(0);
@@ -145,7 +145,7 @@ describe('The same functionality as the built-in object `Math` should be guarant
         expect(MathPlus.acos(2)).toBe(NaN);
       });
 
-      testIf(isDefinedAsFunction, 'passing null, an empty string or an empty array returns the arccosine of 0', () => {
+      testIf(isDefinedAsFunction, 'passing null, an empty string or an empty array returns the arc-cosine of 0', () => {
         expect(MathPlus.acos(null)).toBe(Math.PI / 2);
         expect(MathPlus.acos('')).toBe(Math.PI / 2);
         expect(MathPlus.acos([])).toBe(Math.PI / 2);
@@ -162,6 +162,51 @@ describe('The same functionality as the built-in object `Math` should be guarant
         expect(() => MathPlus.acos(-1n)).toThrow();
         expect(() => MathPlus.acos(0n)).toThrow();
         expect(() => MathPlus.acos(1n)).toThrow();
+      });
+    });
+
+    describe('function acosh; returns the hyperbolic arc-cosine of a number', () => {
+      const isDefinedAsFunction = typeof MathPlus.acosh === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number greater than or equal to 1 returns the hyperbolic arc-cosine of the given number', () => {
+        expect(MathPlus.acosh(1)).toBe(Math.acosh(1));
+        expect(MathPlus.acosh(2)).toBe(Math.acosh(2));
+
+        expect(MathPlus.acosh(1)).toBe(0);
+        expect(MathPlus.acosh(2)).toBe(Math.log(2 + Math.sqrt(2 ** 2 - 1)));
+      });
+
+      testIf(isDefinedAsFunction, 'passing a number less than 1 returns NaN', () => {
+        expect(MathPlus.acosh(-1)).toBe(Math.acosh(-1));
+        expect(MathPlus.acosh(0)).toBe(Math.acosh(0));
+        expect(MathPlus.acosh(0.5)).toBe(Math.acosh(0.5));
+
+        expect(MathPlus.acosh(-1)).toBe(NaN);
+        expect(MathPlus.acosh(0)).toBe(NaN);
+        expect(MathPlus.acosh(0.5)).toBe(NaN);
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value returns NaN', () => {
+        expect(MathPlus.acosh(null)).toBe(Math.acosh(null));
+        expect(MathPlus.acosh('')).toBe(Math.acosh(''));
+        expect(MathPlus.acosh([])).toBe(Math.acosh([]));
+        expect(MathPlus.acosh({})).toBe(Math.acosh({}));
+        expect(MathPlus.acosh([1, 2])).toBe(Math.acosh([1, 2]));
+        expect(MathPlus.acosh('string')).toBe(Math.acosh('string'));
+        expect(MathPlus.acosh()).toBe(Math.acosh());
+
+        expect(MathPlus.acosh(null)).toBe(NaN);
+        expect(MathPlus.acosh('')).toBe(NaN);
+        expect(MathPlus.acosh([])).toBe(NaN);
+        expect(MathPlus.acosh({})).toBe(NaN);
+        expect(MathPlus.acosh([1, 2])).toBe(NaN);
+        expect(MathPlus.acosh('string')).toBe(NaN);
+        expect(MathPlus.acosh()).toBe(NaN);
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+        expect(() => MathPlus.acos(1n)).toThrow();
+        expect(() => MathPlus.acos(2n)).toThrow();
       });
     });
   });
