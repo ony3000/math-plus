@@ -250,8 +250,8 @@ describe('The same functionality as the built-in object `Math` should be guarant
       });
 
       testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
-        expect(() => MathPlus.acos(1n)).toThrow();
-        expect(() => MathPlus.acos(2n)).toThrow();
+        expect(() => MathPlus.acosh(1n)).toThrow();
+        expect(() => MathPlus.acosh(2n)).toThrow();
       });
     });
   });
