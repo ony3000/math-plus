@@ -116,7 +116,7 @@ describe('The same functionality as the built-in object `Math` should be guarant
       });
 
       describeIf(isDefinedAsFunction, 'passing an array with only one member is almost the same as passing that member as is, but...', () => {
-        testIf(isDefinedAsFunction, 'a numeric value returns the absolute value', () => {
+        test('a numeric value returns the absolute value', () => {
           expect(MathPlus.abs(['-1'])).toBe(Math.abs(['-1']));
           expect(MathPlus.abs([-2])).toBe(Math.abs([-2]));
 
@@ -124,7 +124,7 @@ describe('The same functionality as the built-in object `Math` should be guarant
           expect(MathPlus.abs([-2])).toBe(2);
         });
 
-        testIf(isDefinedAsFunction, 'an empty object, an array with more than one member or a non-numeric string returns NaN', () => {
+        test('an empty object, an array with more than one member or a non-numeric string returns NaN', () => {
           expect(MathPlus.abs([{}])).toBe(Math.abs([{}]));
           expect(MathPlus.abs([[1, 2]])).toBe(Math.abs([[1, 2]]));
           expect(MathPlus.abs(['string'])).toBe(Math.abs(['string']));
@@ -134,13 +134,13 @@ describe('The same functionality as the built-in object `Math` should be guarant
           expect(MathPlus.abs(['string'])).toBe(NaN);
         });
 
-        testIf(isDefinedAsFunction, '[!] undefined not return NaN, and returns 0', () => {
+        test('[!] undefined not return NaN, and returns 0', () => {
           expect(MathPlus.abs([undefined])).toBe(Math.abs([undefined]));
 
           expect(MathPlus.abs([undefined])).toBe(0);
         });
 
-        testIf(isDefinedAsFunction, 'null, an empty string or an empty array returns 0', () => {
+        test('null, an empty string or an empty array returns 0', () => {
           expect(MathPlus.abs([null])).toBe(Math.abs([null]));
           expect(MathPlus.abs([''])).toBe(Math.abs(['']));
           expect(MathPlus.abs([[]])).toBe(Math.abs([[]]));
@@ -150,7 +150,7 @@ describe('The same functionality as the built-in object `Math` should be guarant
           expect(MathPlus.abs([[]])).toBe(0);
         });
 
-        testIf(isDefinedAsFunction, '[!] a bigint not throw error, and returns the absolute value', () => {
+        test('[!] a bigint not throw error, and returns the absolute value', () => {
           expect(MathPlus.abs([-2n])).toBe(Math.abs([-2n]));
           expect(MathPlus.abs([1n])).toBe(Math.abs([1n]));
 
