@@ -182,5 +182,168 @@ describe('The same functionality as the built-in object `Math` should be guarant
         expect(() => extendedFunction(2n)).toThrow();
       });
     });
+
+    describe('function asin; returns the arc-sine (in radians) of a number', () => {
+      const originalFunction = Math.asin;
+      const extendedFunction = MathPlus.asin;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+        expect(extendedFunction(-2)).toBe(originalFunction(-2));
+        expect(extendedFunction(-1)).toBe(originalFunction(-1));
+        expect(extendedFunction(0)).toBe(originalFunction(0));
+        expect(extendedFunction(0.5)).toBe(originalFunction(0.5));
+        expect(extendedFunction(1)).toBe(originalFunction(1));
+        expect(extendedFunction(2)).toBe(originalFunction(2));
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+        expect(extendedFunction(null)).toBe(originalFunction(null));
+        expect(extendedFunction('')).toBe(originalFunction(''));
+        expect(extendedFunction([])).toBe(originalFunction([]));
+        expect(extendedFunction({})).toBe(originalFunction({}));
+        expect(extendedFunction([1, 2])).toBe(originalFunction([1, 2]));
+        expect(extendedFunction('string')).toBe(originalFunction('string'));
+        expect(extendedFunction(undefined)).toBe(originalFunction(undefined));
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+        expect(() => extendedFunction(-1n)).toThrow();
+        expect(() => extendedFunction(0n)).toThrow();
+        expect(() => extendedFunction(1n)).toThrow();
+      });
+    });
+
+    describe('function asinh; returns the hyperbolic arc-sine of a number', () => {
+      const originalFunction = Math.asinh;
+      const extendedFunction = MathPlus.asinh;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+        expect(extendedFunction(-1)).toBe(originalFunction(-1));
+        expect(extendedFunction(0)).toBe(originalFunction(0));
+        expect(extendedFunction(0.5)).toBe(originalFunction(0.5));
+        expect(extendedFunction(1)).toBe(originalFunction(1));
+        expect(extendedFunction(2)).toBe(originalFunction(2));
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+        expect(extendedFunction(null)).toBe(originalFunction(null));
+        expect(extendedFunction('')).toBe(originalFunction(''));
+        expect(extendedFunction([])).toBe(originalFunction([]));
+        expect(extendedFunction({})).toBe(originalFunction({}));
+        expect(extendedFunction([1, 2])).toBe(originalFunction([1, 2]));
+        expect(extendedFunction('string')).toBe(originalFunction('string'));
+        expect(extendedFunction(undefined)).toBe(originalFunction(undefined));
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+        expect(() => extendedFunction(1n)).toThrow();
+        expect(() => extendedFunction(2n)).toThrow();
+      });
+    });
+
+    describe('function atan; returns the arc-tangent (in radians) of a number', () => {
+      const originalFunction = Math.atan;
+      const extendedFunction = MathPlus.atan;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+        expect(extendedFunction(1)).toBe(originalFunction(1));
+        expect(extendedFunction(0)).toBe(originalFunction(0));
+        expect(extendedFunction(-0)).toBe(originalFunction(-0));
+        expect(extendedFunction(Infinity)).toBe(originalFunction(Infinity));
+        expect(extendedFunction(-Infinity)).toBe(originalFunction(-Infinity));
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+        expect(extendedFunction(null)).toBe(originalFunction(null));
+        expect(extendedFunction('')).toBe(originalFunction(''));
+        expect(extendedFunction([])).toBe(originalFunction([]));
+        expect(extendedFunction({})).toBe(originalFunction({}));
+        expect(extendedFunction([1, 2])).toBe(originalFunction([1, 2]));
+        expect(extendedFunction('string')).toBe(originalFunction('string'));
+        expect(extendedFunction(undefined)).toBe(originalFunction(undefined));
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+        expect(() => extendedFunction(-1n)).toThrow();
+        expect(() => extendedFunction(0n)).toThrow();
+        expect(() => extendedFunction(1n)).toThrow();
+      });
+    });
+
+    describe('function atan2; returns the angle in the plane (in radians) between the positive x-axis and the ray from (0,0) to the point (x,y), for `Math.atan2(y,x)`.', () => {
+      const originalFunction = Math.atan2;
+      const extendedFunction = MathPlus.atan2;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing numbers', () => {
+        expect(extendedFunction(3, 4)).toBe(originalFunction(3, 4));
+        expect(extendedFunction(4, 3)).toBe(originalFunction(4, 3));
+
+        const arbitraryPositiveNumber = 1 / Math.random();
+        const arbitraryFiniteNumber = 2 * Math.random() - 1;
+        const arbitraryFinitePositiveNumber = Math.abs(arbitraryFiniteNumber) + 1;
+
+        expect(extendedFunction(0, -0)).toBe(originalFunction(0, -0));
+        expect(extendedFunction(-0, -0)).toBe(originalFunction(-0, -0));
+        expect(extendedFunction(0, 0)).toBe(originalFunction(0, 0));
+        expect(extendedFunction(-0, 0)).toBe(originalFunction(-0, 0));
+        expect(extendedFunction(0, -arbitraryPositiveNumber)).toBe(originalFunction(0, -arbitraryPositiveNumber));
+        expect(extendedFunction(-0, -arbitraryPositiveNumber)).toBe(originalFunction(-0, -arbitraryPositiveNumber));
+        expect(extendedFunction(0, arbitraryPositiveNumber)).toBe(originalFunction(0, arbitraryPositiveNumber));
+        expect(extendedFunction(-0, arbitraryPositiveNumber)).toBe(originalFunction(-0, arbitraryPositiveNumber));
+        expect(extendedFunction(-arbitraryPositiveNumber, 0)).toBe(originalFunction(-arbitraryPositiveNumber, 0));
+        expect(extendedFunction(-arbitraryPositiveNumber, -0)).toBe(originalFunction(-arbitraryPositiveNumber, -0));
+        expect(extendedFunction(arbitraryPositiveNumber, 0)).toBe(originalFunction(arbitraryPositiveNumber, 0));
+        expect(extendedFunction(arbitraryPositiveNumber, -0)).toBe(originalFunction(arbitraryPositiveNumber, -0));
+        expect(extendedFunction(arbitraryFinitePositiveNumber, -Infinity)).toBe(originalFunction(arbitraryFinitePositiveNumber, -Infinity));
+        expect(extendedFunction(-arbitraryFinitePositiveNumber, -Infinity)).toBe(originalFunction(-arbitraryFinitePositiveNumber, -Infinity));
+        expect(extendedFunction(arbitraryFinitePositiveNumber, Infinity)).toBe(originalFunction(arbitraryFinitePositiveNumber, Infinity));
+        expect(extendedFunction(-arbitraryFinitePositiveNumber, Infinity)).toBe(originalFunction(-arbitraryFinitePositiveNumber, Infinity));
+        expect(extendedFunction(Infinity, arbitraryFiniteNumber)).toBe(originalFunction(Infinity, arbitraryFiniteNumber));
+        expect(extendedFunction(-Infinity, arbitraryFiniteNumber)).toBe(originalFunction(-Infinity, arbitraryFiniteNumber));
+        expect(extendedFunction(Infinity, -Infinity)).toBe(originalFunction(Infinity, -Infinity));
+        expect(extendedFunction(-Infinity, -Infinity)).toBe(originalFunction(-Infinity, -Infinity));
+        expect(extendedFunction(Infinity, Infinity)).toBe(originalFunction(Infinity, Infinity));
+        expect(extendedFunction(-Infinity, Infinity)).toBe(originalFunction(-Infinity, Infinity));
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+        expect(() => extendedFunction(1, 1n)).toThrow();
+        expect(() => extendedFunction(1n, 1)).toThrow();
+        expect(() => extendedFunction(1n, 1n)).toThrow();
+      });
+    });
+
+    describe('function atanh; returns the hyperbolic arc-tangent of a number', () => {
+      const originalFunction = Math.atanh;
+      const extendedFunction = MathPlus.atanh;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+        expect(extendedFunction(-1)).toBe(originalFunction(-1));
+        expect(extendedFunction(0)).toBe(originalFunction(0));
+        expect(extendedFunction(0.5)).toBe(originalFunction(0.5));
+        expect(extendedFunction(1)).toBe(originalFunction(1));
+        expect(extendedFunction(2)).toBe(originalFunction(2));
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+        expect(extendedFunction(null)).toBe(originalFunction(null));
+        expect(extendedFunction('')).toBe(originalFunction(''));
+        expect(extendedFunction([])).toBe(originalFunction([]));
+        expect(extendedFunction({})).toBe(originalFunction({}));
+        expect(extendedFunction([1, 2])).toBe(originalFunction([1, 2]));
+        expect(extendedFunction('string')).toBe(originalFunction('string'));
+        expect(extendedFunction(undefined)).toBe(originalFunction(undefined));
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+        expect(() => extendedFunction(1n)).toThrow();
+        expect(() => extendedFunction(2n)).toThrow();
+      });
+    });
   });
 });
