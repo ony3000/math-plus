@@ -361,7 +361,7 @@ describe('The same functionality as the built-in object `Math` should be guarant
       });
     });
 
-    describe('function ceil; always rounds a number up to the next largest integer', () => {
+    describe('function ceil; returns the smallest integer greater than or equal to a given number', () => {
       const originalFunction = Math.ceil;
       const extendedFunction = MathPlus.ceil;
       const isDefinedAsFunction = typeof extendedFunction === 'function';
@@ -409,6 +409,66 @@ describe('The same functionality as the built-in object `Math` should be guarant
     describe('function cosh; returns the hyperbolic cosine of a number', () => {
       const originalFunction = Math.cosh;
       const extendedFunction = MathPlus.cosh;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function exp; returns `e^x`, where `x` is the argument, and `e` is the base of the natural logarithms', () => {
+      const originalFunction = Math.exp;
+      const extendedFunction = MathPlus.exp;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function expm1; returns `e^x - 1`, where `x` is the argument, and `e` is the base of the natural logarithms', () => {
+      const originalFunction = Math.expm1;
+      const extendedFunction = MathPlus.expm1;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function floor; returns the largest integer less than or equal to a given number', () => {
+      const originalFunction = Math.floor;
+      const extendedFunction = MathPlus.floor;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function fround; returns the nearest 32-bit single precision float representation of a number', () => {
+      const originalFunction = Math.fround;
+      const extendedFunction = MathPlus.fround;
       const isDefinedAsFunction = typeof extendedFunction === 'function';
 
       testIf(isDefinedAsFunction, 'passing a number', () => {
