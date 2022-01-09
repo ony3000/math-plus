@@ -480,5 +480,95 @@ describe('The same functionality as the built-in object `Math` should be guarant
       testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
       });
     });
+
+    describe('function hypot; returns the square root of the sum of squares of its arguments', () => {
+      const originalFunction = Math.hypot;
+      const extendedFunction = MathPlus.hypot;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function imul; returns the result of the C-like 32-bit multiplication of the two parameters', () => {
+      const originalFunction = Math.imul;
+      const extendedFunction = MathPlus.imul;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function log; returns the natural logarithm (base `e`) of a number', () => {
+      const originalFunction = Math.log;
+      const extendedFunction = MathPlus.log;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function log10; returns the base 10 logarithm of a number', () => {
+      const originalFunction = Math.log10;
+      const extendedFunction = MathPlus.log10;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function log1p; returns the natural logarithm (base `e`) of 1 + a number', () => {
+      const originalFunction = Math.log1p;
+      const extendedFunction = MathPlus.log1p;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function log2; returns the base 2 logarithm of a number', () => {
+      const originalFunction = Math.log2;
+      const extendedFunction = MathPlus.log2;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
   });
 });
