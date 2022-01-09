@@ -345,5 +345,80 @@ describe('The same functionality as the built-in object `Math` should be guarant
         expect(() => extendedFunction(2n)).toThrow();
       });
     });
+
+    describe('function cbrt; returns the cube root of a number', () => {
+      const originalFunction = Math.cbrt;
+      const extendedFunction = MathPlus.cbrt;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function ceil; always rounds a number up to the next largest integer', () => {
+      const originalFunction = Math.ceil;
+      const extendedFunction = MathPlus.ceil;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function clz32; returns the number of leading zero bits in the 32-bit binary representation of a number', () => {
+      const originalFunction = Math.clz32;
+      const extendedFunction = MathPlus.clz32;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function cos; returns the cosine of the specified angle (in radians)', () => {
+      const originalFunction = Math.cos;
+      const extendedFunction = MathPlus.cos;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function cosh; returns the hyperbolic cosine of a number', () => {
+      const originalFunction = Math.cosh;
+      const extendedFunction = MathPlus.cosh;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
   });
 });
