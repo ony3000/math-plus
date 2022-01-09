@@ -10,8 +10,35 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  warmup:
+    runs-on: ubuntu-latest
 
+    steps:
+    - name: Notify start of workflow to slack
+      uses: slackapi/slack-github-action@v1.16.0
+      with:
+        channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
+        payload: |
+          {
+            "attachments": [
+              {
+                "pretext": ":hammer_and_wrench: Run a workflow #${{ github.run_number }}",
+                "fallback": ":hammer_and_wrench: Run a workflow #${{ github.run_number }}",
+                "author_name": "${{ github.actor }}",
+                "author_link": "${{ github.server_url }}/${{ github.actor }}",
+                "author_icon": "${{ github.server_url }}/${{ github.actor }}.png?size=64",
+                "title": "Workflow #${{ github.run_number }} ${{ github.workflow }}",
+                "title_link": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+                "footer": "<${{ github.server_url }}/${{ github.repository }}|${{ github.repository }}>",
+                "mrkdwn_in": ["text", "footer"]
+              }
+            ]
+          }
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+  lint:
+    needs: warmup
     runs-on: ubuntu-latest
 
     strategy:
