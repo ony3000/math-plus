@@ -570,5 +570,80 @@ describe('The same functionality as the built-in object `Math` should be guarant
       testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
       });
     });
+
+    describe('function max; returns the largest of the zero or more numbers given as input parameters', () => {
+      const originalFunction = Math.max;
+      const extendedFunction = MathPlus.max;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function min; returns the smallest of the zero or more numbers given as input parameters', () => {
+      const originalFunction = Math.min;
+      const extendedFunction = MathPlus.min;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function pow; returns the `base` to the `exponent` power, as in `base^exponent`', () => {
+      const originalFunction = Math.pow;
+      const extendedFunction = MathPlus.pow;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function random; returns a floating-point, pseudo-random number in the range 0 to less than 1 (inclusive of 0, but not 1) with approximately uniform distribution over that range', () => {
+      const originalFunction = Math.random;
+      const extendedFunction = MathPlus.random;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function round; returns the value of a number rounded to the nearest integer', () => {
+      const originalFunction = Math.round;
+      const extendedFunction = MathPlus.round;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
   });
 });
