@@ -645,5 +645,110 @@ describe('The same functionality as the built-in object `Math` should be guarant
       testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
       });
     });
+
+    describe('function sign; returns either a positive or negative +/- 1, indicating the sign of a number passed into the argument', () => {
+      const originalFunction = Math.sign;
+      const extendedFunction = MathPlus.sign;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function sin; returns the sine of the specified angle (in radians)', () => {
+      const originalFunction = Math.sin;
+      const extendedFunction = MathPlus.sin;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function sinh; returns the hyperbolic sine of a number', () => {
+      const originalFunction = Math.sinh;
+      const extendedFunction = MathPlus.sinh;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function sqrt; returns the square root of a number', () => {
+      const originalFunction = Math.sqrt;
+      const extendedFunction = MathPlus.sqrt;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function tan; returns the tangent of the specified angle (in radians)', () => {
+      const originalFunction = Math.tan;
+      const extendedFunction = MathPlus.tan;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function tanh; returns the hyperbolic tangent of a number', () => {
+      const originalFunction = Math.tanh;
+      const extendedFunction = MathPlus.tanh;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
+
+    describe('function trunc; returns the integer part of a number by removing any fractional digits', () => {
+      const originalFunction = Math.trunc;
+      const extendedFunction = MathPlus.trunc;
+      const isDefinedAsFunction = typeof extendedFunction === 'function';
+
+      testIf(isDefinedAsFunction, 'passing a number', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a non-numeric value', () => {
+      });
+
+      testIf(isDefinedAsFunction, 'passing a bigint throws error', () => {
+      });
+    });
   });
 });
