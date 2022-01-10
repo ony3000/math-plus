@@ -64,4 +64,26 @@ describe('The same functionality as the built-in object `Math` should be guarant
       });
     });
   });
+
+  describe('`MathPlus` must contain the string valued property that is used in the creation of the default string description of an object', () => {
+    const prop = Symbol.toStringTag;
+    const isDefinedAsString = typeof MathPlus[prop] === 'string';
+
+    test('is defined as a string', () => {
+      expect(isDefinedAsString).toBe(true);
+    });
+
+    testIf(isDefinedAsString, 'has same property descriptors', () => {
+      const plusPropDescriptor = Object.getOwnPropertyDescriptor(MathPlus, prop);
+      const originPropDescriptor = Object.getOwnPropertyDescriptor(Math, prop);
+
+      expect(plusPropDescriptor.configurable).toBe(originPropDescriptor.configurable);
+      expect(plusPropDescriptor.enumerable).toBe(originPropDescriptor.enumerable);
+      expect(plusPropDescriptor.writable).toBe(originPropDescriptor.writable);
+    });
+
+    testIf(isDefinedAsString, 'has the name `MathPlus`', () => {
+      expect(MathPlus[prop]).toBe('MathPlus');
+    });
+  });
 });
