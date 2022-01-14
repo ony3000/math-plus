@@ -148,6 +148,10 @@ methodProps.forEach((prop) => {
   Object.defineProperty(MathPlus, prop, methodDescriptor);
 });
 
+Object.defineProperty(MathPlus.hypot, 'length', { value: 2 });
+Object.defineProperty(MathPlus.max, 'length', { value: 2 });
+Object.defineProperty(MathPlus.min, 'length', { value: 2 });
+
 Object.defineProperty(MathPlus, Symbol.toStringTag, {
   configurable: true,
   enumerable: false,
