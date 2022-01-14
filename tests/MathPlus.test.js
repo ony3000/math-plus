@@ -1,5 +1,6 @@
 import MathPlus, { constantProps, methodProps } from '../src';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const describeIf = (condition, ...args) => (condition ? describe(...args) : describe.skip(...args));
 
 const testIf = (condition, ...args) => (condition ? test(...args) : test.skip(...args));

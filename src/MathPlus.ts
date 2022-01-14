@@ -86,6 +86,7 @@ const MathPlus: MathPlusShape = {
     return Math.min(...values);
   },
   pow(x: number, y: number): number {
+    // eslint-disable-next-line prefer-exponentiation-operator, no-restricted-properties
     return Math.pow(x, y);
   },
   random(): number {
