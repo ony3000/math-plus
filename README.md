@@ -2,7 +2,7 @@
 An object that extends the JavaScript built-in object `Math`.
 
 ## Development Environment
-* Node 14
+* Node 16
 
 ## Development Milestone
 * `0.1.0` - Same functionality as the built-in object `Math`.
