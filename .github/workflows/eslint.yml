@@ -1,44 +1,22 @@
 # This workflow will do a install of node dependencies and run lints across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI (ESLint)
+name: Running ESLint
 
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    paths:
+      - '.github/workflows/eslint.yml'
+      - '.eslintrc.js'
+      - '.eslintignore'
+      - 'src/**'
+      - 'tests/**'
 
 jobs:
-  warmup:
-    runs-on: ubuntu-latest
+  eslint:
+    name: Running ESLint
 
-    steps:
-    - name: Notify start of workflow to slack
-      uses: slackapi/slack-github-action@v1.16.0
-      with:
-        channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
-        payload: |
-          {
-            "attachments": [
-              {
-                "pretext": ":hammer_and_wrench: Run a workflow #${{ github.run_number }}",
-                "fallback": ":hammer_and_wrench: Run a workflow #${{ github.run_number }}",
-                "author_name": "${{ github.actor }}",
-                "author_link": "${{ github.server_url }}/${{ github.actor }}",
-                "author_icon": "${{ github.server_url }}/${{ github.actor }}.png?size=64",
-                "title": "Workflow #${{ github.run_number }} ${{ github.workflow }}",
-                "title_link": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
-                "footer": "<${{ github.server_url }}/${{ github.repository }}|${{ github.repository }}>",
-                "mrkdwn_in": ["text", "footer"]
-              }
-            ]
-          }
-      env:
-        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-
-  lint:
-    needs: warmup
     runs-on: ubuntu-latest
 
     strategy:
