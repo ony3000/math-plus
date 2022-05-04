@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'MathPlus',
+  tagline: 'An object that extends the JavaScript built-in object `Math`.',
   url: 'https://ony3000.github.io',
   baseUrl: '/math-plus/',
   onBrokenLinks: 'throw',
@@ -38,7 +38,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'math-plus',
+        title: 'MathPlus',
         logo: {
           alt: 'Math Plus Logo',
           src: 'img/logo.svg',
