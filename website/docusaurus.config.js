@@ -42,6 +42,12 @@ const config = {
         },
         items: [
           {
+            type: 'doc',
+            docId: 'index',
+            position: 'left',
+            label: 'Docs',
+          },
+          {
             href: 'https://github.com/ony3000/math-plus',
             label: 'GitHub',
             position: 'right',
@@ -54,6 +60,10 @@ const config = {
           {
             title: 'Docs',
             items: [
+              {
+                label: 'Introduction',
+                to: '/docs/',
+              },
             ],
           },
           {
