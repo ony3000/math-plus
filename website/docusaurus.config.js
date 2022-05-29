@@ -64,6 +64,10 @@ const config = {
                 label: 'Introduction',
                 to: '/docs/introduction',
               },
+              {
+                label: 'Getting Started',
+                to: '/docs/getting-started',
+              },
             ],
           },
           {
